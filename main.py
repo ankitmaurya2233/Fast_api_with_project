@@ -12,6 +12,8 @@ def Home():
 def about():
     return {"Detail":"Ankit is a software engineer"}
 
+
+
 @app.get('/blog/unpublish')
 def unpublish():
     return {"Unpublish":"unpublish blog"}
@@ -25,3 +27,21 @@ def blog(id:int):
 @app.get("/blog/{id}/comment")
 def comment(id:int):
     return {"id": id, "content": "This is a comment"}
+
+
+##Query parameter###########################################
+#http://127.0.0.1:8000/blog?limit=10&publish=false
+# query parameter to get the limit
+# for default value we need to make like
+# def blog(limit=10,publish:bool=True):
+#     if publish==True:
+#         return {"Limit": limit, "Blog":"List of Blogs"}
+#     else:
+#         return {"Limit": limit, "Blog":"List of Unpublish Blogs"}
+
+@app.get("/blog")
+def blog(limit,publish:bool):
+    if publish==True:
+        return {"Limit": limit, "Blog":"List of Blogs"}
+    else:
+        return {"Limit": limit, "Blog":"List of Unpublish Blogs"}
