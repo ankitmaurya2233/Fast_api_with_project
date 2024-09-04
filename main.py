@@ -1,4 +1,7 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import Optional
+import uvicorn
 
 app= FastAPI()
 
@@ -41,15 +44,32 @@ def comment(id:int):
 #     else:
 #         return {"Limit": limit, "Blog":"List of Unpublish Blogs"}
 
-@app.get("/blog")
-def blog(limit,publish:bool):
-    if publish==True:
-        return {"Limit": limit, "Blog":"List of Blogs"}
-    else:
-        return {"Limit": limit, "Blog":"List of Unpublish Blogs"}
+# @app.get("/blog")
+# def blog(limit,publish:bool):
+#     if publish==True:
+#         return {"Limit": limit, "Blog":"List of Blogs"}
+#     else:
+#         return {"Limit": limit, "Blog":"List of Unpublish Blogs"}
     
 
     #### Requeest body########################
 
+# for body we need to import basemodal from pydantic
 
+class Blog(BaseModel):
+    title:str
+    body:str
+    publised:Optional[bool]
+
+@app.post("/blog")
+def blog(request:Blog):
+    return request
+
+
+
+# if we want to change the port on the server
+# first import uvicorn
+
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="127.0.0.1", port=8000)
     
