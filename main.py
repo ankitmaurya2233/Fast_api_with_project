@@ -33,7 +33,9 @@ def comment(id:int):
 #http://127.0.0.1:8000/blog?limit=10&publish=false
 # query parameter to get the limit
 # for default value we need to make like
-# def blog(limit=10,publish:bool=True):
+# if we want to sort anything but that is  optional
+# so using optionl need to import from typing  ,                    from typing import optional
+# def blog(limit=10,publish:bool=True,sort:Optional[str]=None):
 #     if publish==True:
 #         return {"Limit": limit, "Blog":"List of Blogs"}
 #     else:
@@ -45,3 +47,9 @@ def blog(limit,publish:bool):
         return {"Limit": limit, "Blog":"List of Blogs"}
     else:
         return {"Limit": limit, "Blog":"List of Unpublish Blogs"}
+    
+
+    #### Requeest body########################
+
+
+    
